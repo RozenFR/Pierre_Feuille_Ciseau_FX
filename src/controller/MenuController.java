@@ -1,10 +1,11 @@
 package controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
+import javafx.scene.control.RadioButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
@@ -28,12 +29,18 @@ public class MenuController {
     @FXML private ImageView _contactImg;
     @FXML private ImageView _leaveImg;
 
-    //
-
     /////////////////////////////////////////////////////////////
     // Constructor
     /////////////////////////////////////////////////////////////
+
     public MenuController() {
+
+    }
+
+    public MenuController(String theme, String police, int score) {
+        SetTheme(theme);
+        SetPolice(police);
+        SetScore(score);
     }
 
     /////////////////////////////////////////////////////////////
@@ -42,11 +49,39 @@ public class MenuController {
     @FXML
     public void initialize() throws FileNotFoundException {
         SetImg();
+        SetStyle();
     }
 
     /////////////////////////////////////////////////////////////
     // Setter Method
     /////////////////////////////////////////////////////////////
+
+    private void SetTheme(String theme) {
+        this.theme = theme;
+    }
+
+    private void SetPolice(String police) {
+        this.police = police;
+    }
+
+    private void SetScore(int score) {
+        this.score = score;
+    }
+
+    private void SetStyle() {
+        Scene root = GetBG().getScene();
+        root.getStylesheets().clear();
+        if (!theme.isBlank()) {
+            if (isDark()) {
+                root.getStylesheets().add(getClass().getResource("/style/dark - Arial.scss").toExternalForm());
+            }
+            else if (isLight()) {
+                root.getStylesheets().add(getClass().getResource("/style/light - Arial.scss").toExternalForm());
+            }
+        }
+        else
+            root.getStylesheets().add(getClass().getResource("/style/dark - Arial.scss").toExternalForm());
+    }
 
     private void SetImg() throws FileNotFoundException {
 
@@ -90,7 +125,33 @@ public class MenuController {
     // Getter Method
     /////////////////////////////////////////////////////////////
 
+    public ImageView GetBG() {
+        return this._background;
+    }
 
+    public String GetTheme() {
+        return theme;
+    }
+
+    public String GetPolice() {
+        return this.police;
+    }
+
+    public int GetScore() {
+        return this.score;
+    }
+
+    /////////////////////////////////////////////////////////////
+    // Miscellaneous
+    /////////////////////////////////////////////////////////////
+
+    public boolean isDark() {
+        return GetTheme().equalsIgnoreCase("dark");
+    }
+
+    public boolean isLight() {
+        return GetTheme().equalsIgnoreCase("light");
+    }
 
     /////////////////////////////////////////////////////////////
     // FXML Method
