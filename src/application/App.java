@@ -23,7 +23,8 @@ public class App extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/Menu.fxml"));
         loader.setController(new MenuController());
         Parent view = loader.load();
-        view.getStylesheets().add(getClass().getResource("/style/application.scss").toExternalForm());
+        view.getStylesheets().clear();
+        // view.getStylesheets().add(getClass().getResource("/style/application.scss").toExternalForm());
 
         stage.setTitle("Shifumi - CC 2021");
 
