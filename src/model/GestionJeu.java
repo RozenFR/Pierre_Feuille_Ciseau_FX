@@ -170,15 +170,16 @@ public class GestionJeu {
 	}
 
 
-	public int CaculerPoints() {
+	public int CalculerPoints() {
 		//mise à jour des points
 		//retourne -1 si l'ordinateur gagne la manche
 		//          0 si égalité
 		//          1 si le joueur gagne la manche
-		int res=0;
+		int res = 0;
 		switch ((int)(Math.abs((double)this._nombreJoueur - this._nombreOrdi)))
 		{	
-			case 2: if (this._nombreJoueur > this._nombreOrdi)
+			case 2:
+				if (this._nombreJoueur > this._nombreOrdi)
 					{
 						this._pointsJoueur++;
 						res = 1;
@@ -189,7 +190,8 @@ public class GestionJeu {
 						res = -1;
 					}
 					break;
-			case 1: if (this._nombreJoueur < this._nombreOrdi) 
+			case 1:
+				if (this._nombreJoueur < this._nombreOrdi)
 					{
 						this._pointsJoueur++;
 						res = 1;
@@ -200,7 +202,7 @@ public class GestionJeu {
 						res = -1;
 					}
 					break;
-		}		
+		}
 		return res;
 				
 	}

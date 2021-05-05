@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="410.0" prefWidth="610.0" styleClass="rule" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox>
+         <children>
+            <VBox alignment="TOP_CENTER" prefWidth="400.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT">
+                     <children>
+                        <Label text="REGLEMENT  ">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Line endX="100.0" startX="379.29290771484375" startY="0.2928932309150696" />
+                     </children>
+                  </HBox>
+                  <TextArea editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="340.0" prefWidth="400.0" text="Les différentes formes de main au Pierre Feuille Ciseaux :&#10;- La Pierre : est représenté par un poing fermé.&#10;- La feuille : est représenté par une une main plate, la paume en direction du sol.&#10;- Les ciseaux : sont représentés par deux doigts formant un V.&#10;&#10;Force de chaque forme au Pierre Feuille Ciseaux :&#10;- La Pierre écrase les Ciseaux et gagne.&#10;- La feuille enveloppe la Pierre et gagne.&#10;- Les Ciseaux coupent la Feuille et gagnent.&#10;&#10;A partir de là, chaque forme en bat une autre et perd contre une autre.&#10;&#10;Le jeu consiste à atteindre un certain nombre de points contre une intelligence artificielle. Une fois le score atteint, vous avez gagnez dans le cas contraire, l'intelligence articielle gagne." wrapText="true">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="3.0" />
+                     </VBox.margin>
+                  </TextArea>
+                  <Button fx:id="_close" mnemonicParsing="false" text="Fermer" textAlignment="CENTER" />
+               </children>
+            </VBox>
+            <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="200.0">
+               <children>
+                  <HBox alignment="CENTER">
+                     <children>
+                        <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label text="Représentation du ciseau" textAlignment="CENTER" wrapText="true" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER">
+                     <children>
+                        <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label text="Représentation de la feuille" textAlignment="CENTER" wrapText="true" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER">
+                     <children>
+                        <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label text="Représentation de la pierre" textAlignment="CENTER" wrapText="true" />
+                     </children>
+                  </HBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <ImageView fitHeight="50.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label text="Représentation du comptage sur 10 points" textAlignment="CENTER" wrapText="true" />
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
+</StackPane>

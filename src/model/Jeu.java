@@ -34,7 +34,7 @@ public class Jeu {
 				{  //choix aléatoire du nombre de l'ordinateur : 0, 1 ou 2
 					jeu.ChoixOrdinateur();
 					System.out.println("nbord = " + jeu.get_nombreOrdi());
-					jeu.CaculerPoints();
+					jeu.CalculerPoints();
 					
 					System.out.println(" ptsj = "+ jeu.get_pointsJoueur() + " et ptsord = " + jeu.get_pointsOrdi());
 				}

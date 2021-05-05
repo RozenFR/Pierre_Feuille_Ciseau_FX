@@ -1,0 +1,18 @@
+* {
+  -fx-font-family: "Arial Black";
+  -fx-text-fill: cyan;
+}
+
+.scale-btn {
+  -fx-background-color: transparent;
+  -fx-background-repeat: no-repeat;
+  -fx-border: none;
+}
+
+.scale-btn:hover {
+  -fx-cursor: pointer;
+}
+
+.scale-btn:hover ImageView {
+  -fx-opacity: 60%;
+}
