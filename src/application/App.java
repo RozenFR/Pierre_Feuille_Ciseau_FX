@@ -1,8 +1,11 @@
 package application;
 
+import controller.MenuController;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
@@ -16,20 +19,15 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        stage.setTitle("Hello World!");
-        Button btn = new Button();
-        btn.setText("Say 'Hello World'");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
+        // Setup FXML
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/Menu.fxml"));
+        loader.setController(new MenuController());
+        Parent view = loader.load();
+        view.getStylesheets().add(getClass().getResource("/style/application.scss").toExternalForm());
 
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Hello World!");
-            }
-        });
+        stage.setTitle("Shifumi - CC 2021");
 
-        StackPane root = new StackPane();
-        root.getChildren().add(btn);
-        stage.setScene(new Scene(root, 300, 250));
+        stage.setScene(new Scene(view));
         stage.show();
     }
 }
