@@ -1,1 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <VBox alignment="CENTER">
+               <children>
+                  <Label text="OPTION" textAlignment="CENTER">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <HBox alignment="CENTER_LEFT">
+               <children>
+                  <Label text="Général  ">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+                  <Line endX="232.2928924560547" endY="-0.20710676908493042" startX="-70.25486755371094" startY="-0.2073095440864563" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox>
+               <children>
+                  <Label text="Thème">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <padding>
+                        <Insets right="120.0" />
+                     </padding>
+                  </Label>
+                  <HBox>
+                     <children>
+                        <RadioButton fx:id="_dark" mnemonicParsing="false" selected="true" text="Dark">
+                           <padding>
+                              <Insets right="50.0" />
+                           </padding>
+                           <toggleGroup>
+                              <ToggleGroup fx:id="theme" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="_light" mnemonicParsing="false" text="Light" toggleGroup="$theme" />
+                     </children>
+                  </HBox>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets bottom="10.0" />
+               </padding>
+            </HBox>
+            <HBox>
+               <children>
+                  <Label text="Score">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <padding>
+                        <Insets right="50.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="_score" text="0">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                     <padding>
+                        <Insets right="30.0" />
+                     </padding>
+                  </Label>
+                  <Slider fx:id="_slider" blockIncrement="1.0" majorTickUnit="1.0" max="10.0" min="1.0" minorTickCount="0" onContextMenuRequested="#UpdateScoreSlider" onDragDetected="#UpdateScoreSlider" onDragDone="#UpdateScoreSlider" onDragDropped="#UpdateScoreSlider" onDragEntered="#UpdateScoreSlider" onDragExited="#UpdateScoreSlider" onDragOver="#UpdateScoreSlider" onMouseClicked="#UpdateScoreSlider" onMouseDragEntered="#UpdateScoreSlider" onMouseDragExited="#UpdateScoreSlider" onMouseDragOver="#UpdateScoreSlider" onMouseDragReleased="#UpdateScoreSlider" onMouseDragged="#UpdateScoreSlider" onMouseEntered="#UpdateScoreSlider" onMouseExited="#UpdateScoreSlider" onMouseMoved="#UpdateScoreSlider" onMousePressed="#UpdateScoreSlider" onMouseReleased="#UpdateScoreSlider" onScroll="#UpdateScoreSlider" onScrollFinished="#UpdateScoreSlider" onScrollStarted="#UpdateScoreSlider" prefWidth="210.0" showTickLabels="true" snapToTicks="true" value="5.0" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER_LEFT">
+               <children>
+                  <Label text="Textuel  ">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+                  <Line endX="232.2928924560547" endY="-0.20710676908493042" startX="-70.25486755371094" startY="-0.2073095440864563" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox>
+               <children>
+                  <Label text="Police">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <padding>
+                        <Insets right="100.0" />
+                     </padding>
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </Label>
+                  <ChoiceBox fx:id="_polices" prefWidth="190.0" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</StackPane>

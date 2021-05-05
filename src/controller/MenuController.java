@@ -1,13 +1,24 @@
 package controller;
 
+import com.sun.javafx.css.StyleManager;
+import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.RadioButton;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
+import java.util.Optional;
 
 public class MenuController {
 
@@ -16,6 +27,7 @@ public class MenuController {
     /////////////////////////////////////////////////////////////
 
     // Default
+    private Stage stage;
     private String theme;
     private String police;
     private int score;
@@ -33,11 +45,8 @@ public class MenuController {
     // Constructor
     /////////////////////////////////////////////////////////////
 
-    public MenuController() {
-
-    }
-
-    public MenuController(String theme, String police, int score) {
+    public MenuController(Stage stage, String theme, String police, int score) {
+        SetStage(stage);
         SetTheme(theme);
         SetPolice(police);
         SetScore(score);
@@ -49,12 +58,15 @@ public class MenuController {
     @FXML
     public void initialize() throws FileNotFoundException {
         SetImg();
-        SetStyle();
     }
 
     /////////////////////////////////////////////////////////////
     // Setter Method
     /////////////////////////////////////////////////////////////
+
+    private void SetStage(Stage stage) {
+        this.stage = stage;
+    }
 
     private void SetTheme(String theme) {
         this.theme = theme;
@@ -68,19 +80,37 @@ public class MenuController {
         this.score = score;
     }
 
-    private void SetStyle() {
-        Scene root = GetBG().getScene();
-        root.getStylesheets().clear();
+    private void SetStyle() throws IOException {
+
+        Stage stage = GetStage();
+
+        Scene root = stage.getScene();
+
+        Parent view = root.getRoot();
+
+        view.getStylesheets().clear();
+
         if (!theme.isBlank()) {
             if (isDark()) {
-                root.getStylesheets().add(getClass().getResource("/style/dark - Arial.scss").toExternalForm());
+                if (isArial())
+                    view.getStylesheets().add(getClass().getResource("/style/dark - Arial.scss").toExternalForm());
+                else if (isTNR())
+                    view.getStylesheets().add(getClass().getResource("/style/dark - Times New Roman.scss").toExternalForm());
             }
             else if (isLight()) {
-                root.getStylesheets().add(getClass().getResource("/style/light - Arial.scss").toExternalForm());
+                if (isArial())
+                    view.getStylesheets().add(getClass().getResource("/style/light - Arial.scss").toExternalForm());
+                else if (isTNR())
+                    view.getStylesheets().add(getClass().getResource("/style/light - Times New Roman.scss").toExternalForm());
             }
         }
         else
-            root.getStylesheets().add(getClass().getResource("/style/dark - Arial.scss").toExternalForm());
+            view.getStylesheets().add(getClass().getResource("/style/dark - Arial.scss").toExternalForm());
+
+
+
+        stage.setScene(root);
+
     }
 
     private void SetImg() throws FileNotFoundException {
@@ -119,11 +149,16 @@ public class MenuController {
         InputStream streamLeave = getClass().getResourceAsStream("/ext/img/cross.png");
         Image leave = new Image(streamLeave);
         this._leaveImg.setImage(leave);
+
     }
 
     /////////////////////////////////////////////////////////////
     // Getter Method
     /////////////////////////////////////////////////////////////
+
+    public Stage GetStage() {
+        return this.stage;
+    }
 
     public ImageView GetBG() {
         return this._background;
@@ -153,13 +188,53 @@ public class MenuController {
         return GetTheme().equalsIgnoreCase("light");
     }
 
+    public boolean isArial() {
+        return GetPolice().equalsIgnoreCase("arial");
+    }
+
+    public boolean isTNR() {
+        return GetPolice().equalsIgnoreCase("Times New Roman");
+    }
+
     /////////////////////////////////////////////////////////////
     // FXML Method
     /////////////////////////////////////////////////////////////
 
     @FXML
-    public void Option() {
+    public void Option() throws IOException {
 
+        Dialog<String> dialog = new Dialog<>();
+
+        // Setup FXML
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/Option.fxml"));
+        OptionController option = new OptionController(GetTheme(), GetPolice(), GetScore());
+        loader.setController(option);
+        StackPane view = loader.load();
+        view.getStylesheets().addAll(GetBG().getScene().getStylesheets());
+
+        dialog.getDialogPane().setContent(view);
+
+        ButtonType btnApply = new ButtonType("Appliquer", ButtonBar.ButtonData.OK_DONE);
+        ButtonType btnCancel = new ButtonType("Retour", ButtonBar.ButtonData.CANCEL_CLOSE);
+        dialog.getDialogPane().getButtonTypes().addAll(btnApply, btnCancel);
+
+        dialog.setResultConverter(new Callback<ButtonType, String>() {
+            @Override
+            public String call(ButtonType b) {
+                if (b == btnApply)
+                    return option.Ok();
+                return option.Cancel();
+            }
+        });
+
+        Optional<String> result = dialog.showAndWait();
+
+        if (!result.get().isBlank()) {
+            SetScore(option.GetScore());
+            SetTheme(option.GetTheme());
+            SetPolice(option.GetPolice());
+            SetStyle();
+        }
     }
 
     @FXML
@@ -179,7 +254,7 @@ public class MenuController {
 
     @FXML
     public void Leave() {
-
+        Platform.exit();
     }
 
 }

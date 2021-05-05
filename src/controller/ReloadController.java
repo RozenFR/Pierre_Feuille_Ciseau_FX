@@ -19,4 +19,38 @@ public class ReloadController {
 
     }
 
+    /////////////////////////////////////////////////////////////
+    // FXML Method
+    /////////////////////////////////////////////////////////////
+
+    @FXML
+    public void Option() {
+
+    }
+
+    @FXML
+    public void Play() {
+
+    }
+
+    @FXML
+    public void Return() {
+
+    }
+
+    @FXML
+    public void Rules() {
+
+    }
+
+    @FXML
+    public void Contact() {
+
+    }
+
+    @FXML
+    public void Leave() {
+
+    }
+
 }

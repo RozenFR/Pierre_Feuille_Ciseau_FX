@@ -1,6 +1,6 @@
 .root * {
-  -fx-font-family: "Arial";
-  -fx-text-fill: black;
+  -fx-font-family: "Times New Roman";
+  -fx-text-fill: yellow;
 }
 
 .title-btn {
@@ -12,7 +12,7 @@
 
 .title-btn:hover {
   -fx-font-size: 42px;
-  -fx-text-fill: lightgrey;
+  -fx-text-fill: blue;
 }
 
 .title-btn:hover ImageView {
@@ -28,7 +28,7 @@
 
 .little-btn:hover {
   -fx-font-size: 25px;
-  -fx-text-fill: darkgrey;
+  -fx-text-fill: blue;
 }
 
 .little-btn:hover ImageView {
