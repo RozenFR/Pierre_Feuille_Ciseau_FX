@@ -225,7 +225,7 @@ public class OptionController {
     */
     public String Ok() {
         SetTheme(GetIDark().isSelected() ? "dark" : "light");
-        SetPolice(GetIPolices().getValue() != null ? GetIPolices().getValue().toString() : "");
+        SetPolice(GetIPolices().getValue() != null ? GetIPolices().getValue().toString() : GetPolice());
         SetScore((int) Math.round(Integer.parseInt(GetIScore().getText())));
         return "Ok";
     }

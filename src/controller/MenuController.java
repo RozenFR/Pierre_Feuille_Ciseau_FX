@@ -139,7 +139,7 @@ public class MenuController {
     /*
     * Set the image on the view
     */
-    private void SetImg() throws FileNotFoundException {
+    private void SetImg() {
 
         // Background
         this._background.setImage(GetImageMap().get("bg"));

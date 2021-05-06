@@ -14,6 +14,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
+      <ImageView fx:id="_background" fitHeight="1000.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true" styleClass="little-btn" />
       <VBox alignment="TOP_CENTER" prefHeight="1000.0" prefWidth="1000.0">
          <children>
             <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="277.0" prefWidth="1000.0">
@@ -34,7 +35,7 @@
                   </VBox>
                   <VBox alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0" prefWidth="336.0">
                      <children>
-                        <Label fx:id="_status" text="VICTOIRE du joueur" textAlignment="CENTER" wrapText="true">
+                        <Label fx:id="_status" text="" textAlignment="CENTER" wrapText="true">
                            <font>
                               <Font size="40.0" />
                            </font>
@@ -161,7 +162,7 @@
                <children>
                   <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="250.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <Button maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#Cisor" prefHeight="150.0" prefWidth="150.0" styleClass="little-btn">
+                        <Button fx:id="_cisorBtn" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#Cisor" prefHeight="150.0" prefWidth="150.0" styleClass="little-btn">
                            <graphic>
                               <ImageView fx:id="_cisorBtnImg" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
                            </graphic>
@@ -178,7 +179,7 @@
                   </VBox>
                   <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="250.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <Button maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#Rock" prefHeight="150.0" prefWidth="150.0" styleClass="little-btn">
+                        <Button fx:id="_rockBtn" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#Rock" prefHeight="150.0" prefWidth="150.0" styleClass="little-btn">
                            <graphic>
                               <ImageView fx:id="_rockBtnImg" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
                            </graphic>
@@ -195,7 +196,7 @@
                   </VBox>
                   <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="250.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <Button maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#Paper" prefHeight="150.0" prefWidth="150.0" styleClass="little-btn">
+                        <Button fx:id="_paperBtn" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#Paper" prefHeight="150.0" prefWidth="150.0" styleClass="little-btn">
                            <graphic>
                               <ImageView fx:id="_paperBtnImg" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
                            </graphic>
@@ -216,7 +217,7 @@
                <children>
                   <StackPane alignment="BOTTOM_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="100.0" prefWidth="500.0">
                      <children>
-                        <Button mnemonicParsing="false" styleClass="little-btn" text="REGLEMENT">
+                        <Button mnemonicParsing="false" onAction="#Rules" styleClass="little-btn" text="REGLEMENT">
                            <font>
                               <Font size="27.0" />
                            </font>
@@ -228,7 +229,7 @@
                   </StackPane>
                   <StackPane alignment="BOTTOM_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="100.0" prefWidth="500.0">
                      <children>
-                        <Button mnemonicParsing="false" styleClass="little-btn" text="QUITTER">
+                        <Button mnemonicParsing="false" onAction="#Leave" styleClass="little-btn" text="QUITTER">
                            <graphic>
                               <ImageView fx:id="_leaveImg" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
                            </graphic>
@@ -245,6 +246,5 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </VBox>
-      <ImageView fx:id="_background" fitHeight="1000.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true" styleClass="little-btn" />
    </children>
 </AnchorPane>

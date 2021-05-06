@@ -1,5 +1,7 @@
 package controller;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,8 +11,10 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import javafx.util.Duration;
 import model.GestionJeu;
 
 import java.io.FileNotFoundException;
@@ -37,6 +41,8 @@ public class GameController {
     // FXML
     @FXML private ImageView _background;
     @FXML private ImageView _logo;
+    @FXML private ImageView _optionImg;
+    @FXML private ImageView _contactImg;
     @FXML private ImageView _playerChoice;
     @FXML private ImageView _iaChoice;
     @FXML private ImageView _ruleImg;
@@ -50,6 +56,13 @@ public class GameController {
     @FXML private Label _maxScore2;
     @FXML private Label _playerScore;
     @FXML private Label _iaScore;
+
+    @FXML private ProgressBar _playerProgress;
+    @FXML private ProgressBar _iaProgress;
+
+    @FXML private Button _cisorBtn;
+    @FXML private Button _rockBtn;
+    @FXML private Button _paperBtn;
 
     /////////////////////////////////////////////////////////////
     // Constructor
@@ -71,9 +84,8 @@ public class GameController {
     /////////////////////////////////////////////////////////////
 
     @FXML
-    public void initialize() throws FileNotFoundException {
+    public void initialize() {
         SetDefaultImg();
-        SetImg();
         SetIMaxScore();
     }
 
@@ -127,7 +139,7 @@ public class GameController {
     /*
      * Set the style on the view
      */
-    private void SetStyle() throws IOException {
+    private void SetStyle() {
 
         Stage stage = GetStage();
 
@@ -164,10 +176,15 @@ public class GameController {
     * Set the background on the view
     */
     private void SetDefaultImg() {
-        this._background.setImage(GetImageMap().get("bg"));
+        if (GetTheme().equalsIgnoreCase("dark"))
+            this._background.setImage(GetImageMap().get("bg-dark"));
+        else if (GetTheme().equalsIgnoreCase("light"))
+            this._background.setImage(GetImageMap().get("bg"));
         this._logo.setImage(GetImageMap().get("Logo"));
         this._ruleImg.setImage(GetImageMap().get("rules"));
         this._leaveImg.setImage(GetImageMap().get("cross"));
+        this._optionImg.setImage(GetImageMap().get("gear"));
+        this._contactImg.setImage(GetImageMap().get("question mark"));
         this._cisorBtnImg.setImage(GetImageMap().get("btn_cisor"));
         this._rockBtnImg.setImage(GetImageMap().get("btn_rock"));
         this._paperBtnImg.setImage(GetImageMap().get("btn_paper"));
@@ -177,7 +194,24 @@ public class GameController {
      * Set the image on the view
      */
     private void SetImg() throws FileNotFoundException {
-        // if (GetGame().get_nombreJoueur() == 0)
+        int nbPlayer = GetGame().get_nombreJoueur();
+
+        if (nbPlayer == 0)
+            this._playerChoice.setImage(GetImageMap().get("ciseaux"));
+        else if (nbPlayer == 1)
+            this._playerChoice.setImage(GetImageMap().get("papier"));
+        else if (nbPlayer == 2)
+            this._playerChoice.setImage(GetImageMap().get("pierre"));
+
+        int nbIA = GetGame().get_nombreOrdi();
+
+        if (nbIA == 0)
+            this._iaChoice.setImage(GetImageMap().get("ciseaux"));
+        else if (nbIA == 1)
+            this._iaChoice.setImage(GetImageMap().get("papier"));
+        else if (nbIA == 2)
+            this._iaChoice.setImage(GetImageMap().get("pierre"));
+
     }
 
     /*
@@ -186,6 +220,11 @@ public class GameController {
     private void SetIMaxScore() {
         this._maxScore1.setText(String.valueOf(GetScore()));
         this._maxScore2.setText(String.valueOf(GetScore()));
+    }
+
+    private void SetIScore() {
+        this._playerScore.setText(String.valueOf(GetGame().get_pointsJoueur()));
+        this._iaScore.setText(String.valueOf(GetGame().get_pointsOrdi()));
     }
 
     /////////////////////////////////////////////////////////////
@@ -276,6 +315,9 @@ public class GameController {
             SetTheme(option.GetTheme());
             SetPolice(option.GetPolice());
             SetStyle();
+            SetGame();
+            SetIMaxScore();
+            SetIScore();
         }
     }
 
@@ -369,7 +411,11 @@ public class GameController {
     * Select rock and continue game
     */
     @FXML
-    public void Rock() {
+    public void Rock() throws InterruptedException {
+
+        GetGame().set_nombreJoueur(2);
+        GetGame().ChoixOrdinateur();
+        GameCalculate();
 
     }
 
@@ -379,7 +425,9 @@ public class GameController {
      */
     @FXML
     public void Cisor() {
-
+        GetGame().set_nombreJoueur(0);
+        GetGame().ChoixOrdinateur();
+        GameCalculate();
     }
 
     /*
@@ -389,11 +437,108 @@ public class GameController {
     @FXML
     public void Paper() {
 
+        GetGame().set_nombreJoueur(1);
+        GetGame().ChoixOrdinateur();
+        GameCalculate();
+
     }
 
     /////////////////////////////////////////////////////////////
     // Miscellaneous
     /////////////////////////////////////////////////////////////
+
+    /*
+    * Change Scene if victory or defeat of the player
+    */
+    public void SwitchScene() {
+        if (GetGame().get_pointsJoueur() == GetScore()) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Reload.fxml"));
+            loader.setController(new ReloadController(GetStage(), GetImageMap(), GetTheme(), GetPolice(), GetScore(), true));
+        }
+        else if (GetGame().get_pointsOrdi() == GetScore()) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Reload.fxml"));
+            loader.setController(new ReloadController(GetStage(), GetImageMap(), GetTheme(), GetPolice(), GetScore(), false));
+        }
+    }
+
+    /*
+    * Apply and Calculate Point
+    */
+    public void GameCalculate() {
+        int rs = GetGame().CalculerPoints();
+
+        if (rs == -1) {
+            this._status.setText("Defaite");
+            this._status.setTextFill(Color.RED);
+        }
+        else if (rs == 0) {
+            this._status.setText("Egalite");
+            this._status.setTextFill(Color.BLACK);
+        }
+        else if (rs == 1) {
+            this._status.setText("Victoire");
+            this._status.setTextFill(Color.GREEN);
+        }
+
+        // Set Image on the view
+        try {
+            SetImg();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        final KeyFrame kf0 = new KeyFrame(Duration.seconds(0), e -> DisableButton());
+        final KeyFrame kf1 = new KeyFrame(Duration.seconds(3), e -> ResetImg());
+        final KeyFrame kf2 = new KeyFrame(Duration.seconds(3), e -> ResetStatus());
+        final KeyFrame kf3 = new KeyFrame(Duration.seconds(3), e -> UpdateScore());
+        final KeyFrame kf4 = new KeyFrame(Duration.seconds(3), e -> SwitchScene());
+        final KeyFrame kf5 = new KeyFrame(Duration.seconds(3), e -> EnableButton());
+        final Timeline timeline = new Timeline(kf0, kf1, kf2, kf3, kf4, kf5);
+        Platform.runLater(timeline::play);
+    }
+
+    /*
+    * Disable paper, rock and cisor button on the view
+    */
+    public void DisableButton() {
+        this._rockBtn.setDisable(true);
+        this._cisorBtn.setDisable(true);
+        this._paperBtn.setDisable(true);
+    }
+
+    /*
+     * Enable paper, rock and cisor button on the view
+     */
+    public void EnableButton() {
+        this._rockBtn.setDisable(false);
+        this._cisorBtn.setDisable(false);
+        this._paperBtn.setDisable(false);
+    }
+
+    /*
+    * Method that reset the image choice ia and player on the view
+    */
+    public void ResetImg() {
+        this._playerChoice.imageProperty().set(null);
+        this._iaChoice.imageProperty().set(null);
+    }
+
+    /*
+    * Method that reset the status message on the view
+    */
+    public void ResetStatus() {
+        this._status.setText("");
+    }
+
+    /*
+    * Methad that Update the score on the view
+    */
+    public void UpdateScore() {
+        this._playerScore.setText(String.valueOf(GetGame().get_pointsJoueur()));
+        this._playerProgress.setProgress(((double)GetGame().get_pointsJoueur()) / ((double)GetScore()));
+        this._iaScore.setText(String.valueOf(GetGame().get_pointsOrdi()));
+        this._iaProgress.setProgress(((double)GetGame().get_pointsOrdi())/((double)GetScore()));
+    }
 
     /*
      * return true if theme is actually dark

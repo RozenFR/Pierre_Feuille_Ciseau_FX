@@ -19,7 +19,8 @@ public class App extends Application {
     /////////////////////////////////////////////////////////////
 
     final static String [] IMG_FOLDER = {"bg", "score", "chifoumi", "ciseaux", "cross", "gear", "Logo",
-            "papier", "pierre", "play", "question mark", "rules", "btn_rock", "btn_cisor", "btn_paper"};
+            "papier", "pierre", "play", "question mark", "rules", "btn_rock", "btn_cisor", "btn_paper",
+            "bg-dark"};
 
     /////////////////////////////////////////////////////////////
     // Variable
@@ -45,7 +46,7 @@ public class App extends Application {
         SetImageMap();
         // Setup FXML
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/Menu.fxml"));
-        loader.setController(new MenuController(stage, GetImageMap(), "", "", 5));
+        loader.setController(new MenuController(stage, GetImageMap(), "dark", "arial", 5));
         Parent view = loader.load();
         view.getStylesheets().clear();
         view.getStylesheets().add(getClass().getResource("/style/dark - Arial.scss").toExternalForm());
