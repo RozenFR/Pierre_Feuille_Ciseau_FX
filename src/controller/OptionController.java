@@ -75,7 +75,7 @@ public class OptionController {
     * Set the ChoiceBox on the view
     */
     private void SetChoiceBox(String police) {
-        String [] polices = {"arial", "times new roman", "roboto"};
+        String [] polices = {"arial", "times new roman"};
         GetIPolices().getItems().addAll(FXCollections.observableArrayList(polices));
     }
 

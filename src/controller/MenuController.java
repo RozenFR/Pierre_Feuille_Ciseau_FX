@@ -319,9 +319,9 @@ public class MenuController {
 
         // Setup FXML
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/Contact.fxml"));
-        RuleController ruleController = new RuleController(GetImageMap());
-        loader.setController(ruleController);
-        StackPane view = loader.load();
+        ContactController contactController = new ContactController();
+        loader.setController(contactController);
+        Parent view = loader.load();
         view.getStylesheets().addAll(GetStage().getScene().getRoot().getStylesheets());
 
         dialog.getDialogPane().setContent(view);
@@ -334,17 +334,17 @@ public class MenuController {
             @Override
             public String call(ButtonType b) {
                 if (b == btnApply)
-                    return ruleController.Ok();
-                return ruleController.Cancel();
+                    return contactController.Ok();
+                return contactController.Cancel();
             }
         });
 
         Optional<String> result = dialog.showAndWait();
 
         if (!result.get().isBlank())
-            System.out.println("Successfully left Rules Dialog");
+            System.out.println("Successfully left Contact Dialog");
         else
-            System.out.println("Cancel Rules Dialog");
+            System.out.println("Cancel Contact Dialog");
     }
 
     /*

@@ -18,7 +18,8 @@ public class App extends Application {
     // Constructor
     /////////////////////////////////////////////////////////////
 
-    final static String [] IMG_FOLDER = {"bg", "score", "chifoumi", "ciseaux", "cross", "gear", "Logo", "papier", "pierre", "play", "question mark", "rules"};
+    final static String [] IMG_FOLDER = {"bg", "score", "chifoumi", "ciseaux", "cross", "gear", "Logo",
+            "papier", "pierre", "play", "question mark", "rules", "btn_rock", "btn_cisor", "btn_paper"};
 
     /////////////////////////////////////////////////////////////
     // Variable
@@ -66,7 +67,6 @@ public class App extends Application {
         Map<String, Image> imageViewMap = new HashMap<>();
         for(String fileName : IMG_FOLDER) {
             InputStream stream = getClass().getResourceAsStream("/ext/img/" + fileName + ".png");
-            assert stream != null;
             Image img = new Image(stream);
             imageViewMap.put(fileName, img);
         }

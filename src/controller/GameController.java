@@ -11,6 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import model.GestionJeu;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -30,19 +31,39 @@ public class GameController {
     private int score; // score => points to win
     private Map<String, Image> imageMap; // Reference to all ext/img
 
+    // Game
+    private GestionJeu game; // Reference to the Game
+
     // FXML
-    // TODO Set up all fxml variable
+    @FXML private ImageView _background;
+    @FXML private ImageView _logo;
+    @FXML private ImageView _playerChoice;
+    @FXML private ImageView _iaChoice;
+    @FXML private ImageView _ruleImg;
+    @FXML private ImageView _leaveImg;
+    @FXML private ImageView _cisorBtnImg;
+    @FXML private ImageView _rockBtnImg;
+    @FXML private ImageView _paperBtnImg;
+
+    @FXML private Label _status;
+    @FXML private Label _maxScore1;
+    @FXML private Label _maxScore2;
+    @FXML private Label _playerScore;
+    @FXML private Label _iaScore;
 
     /////////////////////////////////////////////////////////////
     // Constructor
     /////////////////////////////////////////////////////////////
 
     public GameController(Stage stage, Map<String, Image> imageMap, String theme, String police, int score) {
+        // Default
         SetImageMap(imageMap);
         SetStage(stage);
         SetTheme(theme);
         SetPolice(police);
         SetScore(score);
+        // Game
+        SetGame();
     }
 
     /////////////////////////////////////////////////////////////
@@ -51,7 +72,9 @@ public class GameController {
 
     @FXML
     public void initialize() throws FileNotFoundException {
+        SetDefaultImg();
         SetImg();
+        SetIMaxScore();
     }
 
     /////////////////////////////////////////////////////////////
@@ -94,6 +117,14 @@ public class GameController {
     }
 
     /*
+    * Set the game on the controller
+    */
+    private void SetGame() {
+        this.game = new GestionJeu();
+        game.set_maxPointsGagnants(GetScore());
+    }
+
+    /*
      * Set the style on the view
      */
     private void SetStyle() throws IOException {
@@ -130,12 +161,31 @@ public class GameController {
     }
 
     /*
+    * Set the background on the view
+    */
+    private void SetDefaultImg() {
+        this._background.setImage(GetImageMap().get("bg"));
+        this._logo.setImage(GetImageMap().get("Logo"));
+        this._ruleImg.setImage(GetImageMap().get("rules"));
+        this._leaveImg.setImage(GetImageMap().get("cross"));
+        this._cisorBtnImg.setImage(GetImageMap().get("btn_cisor"));
+        this._rockBtnImg.setImage(GetImageMap().get("btn_rock"));
+        this._paperBtnImg.setImage(GetImageMap().get("btn_paper"));
+    }
+
+    /*
      * Set the image on the view
      */
     private void SetImg() throws FileNotFoundException {
+        // if (GetGame().get_nombreJoueur() == 0)
+    }
 
-        // TODO Complete SetImg
-
+    /*
+    * Set the Label Score on the view
+    */
+    private void SetIMaxScore() {
+        this._maxScore1.setText(String.valueOf(GetScore()));
+        this._maxScore2.setText(String.valueOf(GetScore()));
     }
 
     /////////////////////////////////////////////////////////////
@@ -175,6 +225,13 @@ public class GameController {
      */
     public Map<String, Image> GetImageMap() {
         return this.imageMap;
+    }
+
+    /*
+    * Get the Game from the controller
+    */
+    public GestionJeu GetGame() {
+        return this.game;
     }
 
     /////////////////////////////////////////////////////////////
@@ -265,8 +322,37 @@ public class GameController {
      * Return a dialog box
      */
     @FXML
-    public void Contact() {
-        // TODO Complete Contact
+    public void Contact() throws IOException {
+        Dialog<String> dialog = new Dialog<>();
+
+        // Setup FXML
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/Contact.fxml"));
+        ContactController contactController = new ContactController();
+        loader.setController(contactController);
+        Parent view = loader.load();
+        view.getStylesheets().addAll(GetStage().getScene().getRoot().getStylesheets());
+
+        dialog.getDialogPane().setContent(view);
+
+        ButtonType btnApply = new ButtonType("Ok", ButtonBar.ButtonData.OK_DONE);
+        ButtonType btnCancel = new ButtonType("Retour", ButtonBar.ButtonData.CANCEL_CLOSE);
+        dialog.getDialogPane().getButtonTypes().addAll(btnApply, btnCancel);
+
+        dialog.setResultConverter(new Callback<ButtonType, String>() {
+            @Override
+            public String call(ButtonType b) {
+                if (b == btnApply)
+                    return contactController.Ok();
+                return contactController.Cancel();
+            }
+        });
+
+        Optional<String> result = dialog.showAndWait();
+
+        if (!result.get().isBlank())
+            System.out.println("Successfully left Contact Dialog");
+        else
+            System.out.println("Cancel Contact Dialog");
     }
 
     /*

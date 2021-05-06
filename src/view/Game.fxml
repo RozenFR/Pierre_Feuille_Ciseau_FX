@@ -92,7 +92,7 @@
                               <Insets left="150.0" />
                            </StackPane.margin>
                         </ProgressBar>
-                        <Label text="10">
+                        <Label fx:id="_maxScore1" text="10">
                            <font>
                               <Font size="27.0" />
                            </font>
@@ -126,7 +126,7 @@
                               <Insets right="150.0" />
                            </StackPane.margin>
                         </ProgressBar>
-                        <Label text="10">
+                        <Label fx:id="_maxScore2" text="10">
                            <font>
                               <Font size="27.0" />
                            </font>
@@ -183,7 +183,7 @@
                               <ImageView fx:id="_rockBtnImg" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
                            </graphic>
                         </Button>
-                        <Label text="Ciseau">
+                        <Label text="Pierre">
                            <font>
                               <Font size="27.0" />
                            </font>
@@ -200,7 +200,7 @@
                               <ImageView fx:id="_paperBtnImg" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
                            </graphic>
                         </Button>
-                        <Label text="Ciseau">
+                        <Label text="Papier">
                            <font>
                               <Font size="27.0" />
                            </font>
@@ -230,7 +230,7 @@
                      <children>
                         <Button mnemonicParsing="false" styleClass="little-btn" text="QUITTER">
                            <graphic>
-                              <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="_leaveImg" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
                            </graphic>
                            <font>
                               <Font size="27.0" />
