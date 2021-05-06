@@ -115,12 +115,14 @@ public class MenuController {
 
         if (!theme.isBlank()) {
             if (isDark()) {
+                this._background.setImage(GetImageMap().get("bg-dark"));
                 if (isArial())
                     view.getStylesheets().add(getClass().getResource("/style/dark - Arial.scss").toExternalForm());
                 else if (isTNR())
                     view.getStylesheets().add(getClass().getResource("/style/dark - Times New Roman.scss").toExternalForm());
             }
             else if (isLight()) {
+                this._background.setImage(GetImageMap().get("bg"));
                 if (isArial())
                     view.getStylesheets().add(getClass().getResource("/style/light - Arial.scss").toExternalForm());
                 else if (isTNR())
@@ -142,7 +144,10 @@ public class MenuController {
     private void SetImg() {
 
         // Background
-        this._background.setImage(GetImageMap().get("bg"));
+        if (isDark())
+            this._background.setImage(GetImageMap().get("bg-dark"));
+        else if (isLight())
+            this._background.setImage(GetImageMap().get("bg"));
 
         // option
         this._optionImg.setImage(GetImageMap().get("gear"));
@@ -203,13 +208,6 @@ public class MenuController {
         return this.imageMap;
     }
 
-    /*
-     * Get the BackGround Image from the view
-     */
-    public ImageView GetBG() {
-        return this._background;
-    }
-
     /////////////////////////////////////////////////////////////
     // FXML Method
     /////////////////////////////////////////////////////////////
@@ -225,7 +223,7 @@ public class MenuController {
 
         // Setup FXML
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/Option.fxml"));
-        OptionController option = new OptionController(GetTheme(), GetPolice(), GetScore());
+        OptionController option = new OptionController(GetStage(), GetTheme(), GetPolice(), GetScore());
         loader.setController(option);
         StackPane view = loader.load();
         view.getStylesheets().addAll(GetStage().getScene().getRoot().getStylesheets());

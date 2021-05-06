@@ -3,6 +3,7 @@ package controller;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
 public class OptionController {
 
@@ -10,10 +11,13 @@ public class OptionController {
     // Variable
     /////////////////////////////////////////////////////////////
 
-    String theme;
-    String police;
-    int score;
+    // Default
+    private Stage stage;
+    private String theme;
+    private String police;
+    private int score;
 
+    // FXML
     @FXML private RadioButton _dark;
     @FXML private RadioButton _light;
 
@@ -25,10 +29,11 @@ public class OptionController {
     // Constructor
     /////////////////////////////////////////////////////////////
 
-    public OptionController(String theme, String police, int score) {
+    public OptionController(Stage stage, String theme, String police, int score) {
+        SetStage(stage);
         SetTheme(theme);
-        this.police = police;
-        this.score = score;
+        SetPolice(police);
+        SetScore(score);
     }
 
     /////////////////////////////////////////////////////////////
@@ -51,23 +56,30 @@ public class OptionController {
     /////////////////////////////////////////////////////////////
 
     /*
+    * Set the stage on the controller
+    */
+    private void SetStage(Stage stage) {
+        this.stage = stage;
+    }
+
+    /*
     * Set the Theme on the Controller
     */
-    public void SetTheme(String theme) {
+    private void SetTheme(String theme) {
         this.theme = theme;
     }
 
     /*
     * Set the police on the controller
     */
-    public void SetPolice(String police) {
+    private void SetPolice(String police) {
         this.police = police;
     }
 
     /*
     * Set the score on the controller
     */
-    public void SetScore(int score) {
+    private void SetScore(int score) {
         this.score = score;
     }
 
@@ -106,6 +118,13 @@ public class OptionController {
     /////////////////////////////////////////////////////////////
     // Getter Method
     /////////////////////////////////////////////////////////////
+
+    /*
+    * Get the stage from the controller
+    */
+    public Stage GetStage() {
+        return this.stage;
+    }
 
     /*
     * Get the theme from the controller

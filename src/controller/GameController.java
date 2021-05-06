@@ -288,7 +288,7 @@ public class GameController {
 
         // Setup FXML
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/Option.fxml"));
-        OptionController option = new OptionController(GetTheme(), GetPolice(), GetScore());
+        OptionController option = new OptionController(GetStage(), GetTheme(), GetPolice(), GetScore());
         loader.setController(option);
         StackPane view = loader.load();
         view.getStylesheets().addAll(GetStage().getScene().getStylesheets());
@@ -450,14 +450,22 @@ public class GameController {
     /*
     * Change Scene if victory or defeat of the player
     */
-    public void SwitchScene() {
-        if (GetGame().get_pointsJoueur() == GetScore()) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Reload.fxml"));
-            loader.setController(new ReloadController(GetStage(), GetImageMap(), GetTheme(), GetPolice(), GetScore(), true));
-        }
-        else if (GetGame().get_pointsOrdi() == GetScore()) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Reload.fxml"));
-            loader.setController(new ReloadController(GetStage(), GetImageMap(), GetTheme(), GetPolice(), GetScore(), false));
+    public void SwitchScene() throws IOException {
+        if (GetGame().Gagnant()) {
+            if (GetGame().JoueurGagne()) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Reload.fxml"));
+                loader.setController(new ReloadController(GetStage(), GetImageMap(), GetTheme(), GetPolice(), GetScore(), true));
+                Parent view = loader.load();
+                view.getStylesheets().addAll(GetStage().getScene().getRoot().getStylesheets());
+                GetStage().setScene(new Scene(view));
+            }
+            else {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Reload.fxml"));
+                loader.setController(new ReloadController(GetStage(), GetImageMap(), GetTheme(), GetPolice(), GetScore(), false));
+                Parent view = loader.load();
+                view.getStylesheets().addAll(GetStage().getScene().getRoot().getStylesheets());
+                GetStage().setScene(new Scene(view));
+            }
         }
     }
 
@@ -477,7 +485,7 @@ public class GameController {
         }
         else if (rs == 1) {
             this._status.setText("Victoire");
-            this._status.setTextFill(Color.GREEN);
+            this._status.setTextFill(Color.ORANGE);
         }
 
         // Set Image on the view
@@ -491,7 +499,13 @@ public class GameController {
         final KeyFrame kf1 = new KeyFrame(Duration.seconds(3), e -> ResetImg());
         final KeyFrame kf2 = new KeyFrame(Duration.seconds(3), e -> ResetStatus());
         final KeyFrame kf3 = new KeyFrame(Duration.seconds(3), e -> UpdateScore());
-        final KeyFrame kf4 = new KeyFrame(Duration.seconds(3), e -> SwitchScene());
+        final KeyFrame kf4 = new KeyFrame(Duration.seconds(3), e -> {
+            try {
+                SwitchScene();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        });
         final KeyFrame kf5 = new KeyFrame(Duration.seconds(3), e -> EnableButton());
         final Timeline timeline = new Timeline(kf0, kf1, kf2, kf3, kf4, kf5);
         Platform.runLater(timeline::play);

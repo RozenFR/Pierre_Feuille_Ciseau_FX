@@ -1,6 +1,10 @@
 .root * {
   -fx-font-family: "Arial";
-  -fx-text-fill: black;
+  -fx-text-fill: white;
+}
+
+.default {
+  -fx-background-color: black;
 }
 
 .title-btn {
@@ -28,7 +32,7 @@
 
 .little-btn:hover {
   -fx-font-size: 25px;
-  -fx-text-fill: darkgrey;
+  -fx-text-fill: lightgrey;
 }
 
 .little-btn:hover ImageView {

@@ -46,10 +46,10 @@ public class App extends Application {
         SetImageMap();
         // Setup FXML
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/Menu.fxml"));
-        loader.setController(new MenuController(stage, GetImageMap(), "dark", "arial", 5));
+        loader.setController(new MenuController(stage, GetImageMap(), "light", "arial", 5));
         Parent view = loader.load();
         view.getStylesheets().clear();
-        view.getStylesheets().add(getClass().getResource("/style/dark - Arial.scss").toExternalForm());
+        view.getStylesheets().add(getClass().getResource("/style/light - Arial.scss").toExternalForm());
 
         stage.setTitle("Shifumi - CC 2021");
 

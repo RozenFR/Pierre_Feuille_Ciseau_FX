@@ -9,6 +9,14 @@ import java.util.Map;
 public class ReloadController {
 
     /////////////////////////////////////////////////////////////
+    // Variable
+    /////////////////////////////////////////////////////////////
+
+    // Default
+
+    // FXML
+
+    /////////////////////////////////////////////////////////////
     // Constructor
     /////////////////////////////////////////////////////////////
     public ReloadController(Stage stage, Map<String, Image> imageMap, String theme, String police, int score, boolean victory) {
@@ -38,7 +46,12 @@ public class ReloadController {
     }
 
     @FXML
-    public void Return() {
+    public void Oui() {
+
+    }
+
+    @FXML
+    public void Non() {
 
     }
 
