@@ -26,7 +26,7 @@ public class OptionController {
     /////////////////////////////////////////////////////////////
 
     public OptionController(String theme, String police, int score) {
-        this.theme = theme;
+        SetTheme(theme);
         this.police = police;
         this.score = score;
     }
@@ -50,12 +50,38 @@ public class OptionController {
     // Setter Method
     /////////////////////////////////////////////////////////////
 
-    private void SetChoiceBox(String police) {
-        String [] polices = {"arial", "times new roman"};
-        GetIPolices().getItems().addAll(FXCollections.observableArrayList(polices));
-
+    /*
+    * Set the Theme on the Controller
+    */
+    public void SetTheme(String theme) {
+        this.theme = theme;
     }
 
+    /*
+    * Set the police on the controller
+    */
+    public void SetPolice(String police) {
+        this.police = police;
+    }
+
+    /*
+    * Set the score on the controller
+    */
+    public void SetScore(int score) {
+        this.score = score;
+    }
+
+    /*
+    * Set the ChoiceBox on the view
+    */
+    private void SetChoiceBox(String police) {
+        String [] polices = {"arial", "times new roman", "roboto"};
+        GetIPolices().getItems().addAll(FXCollections.observableArrayList(polices));
+    }
+
+    /*
+    * Set the theme selected button on the view
+    */
     private void SetBTheme(String theme) throws Exception {
         if (theme.equalsIgnoreCase("dark")) {
             GetILight().setSelected(false);
@@ -67,6 +93,9 @@ public class OptionController {
         }
     }
 
+    /*
+    * Set the score view on the view
+    */
     private void SetSliderScore(int score) throws Exception {
         if (score == 0)
             throw new Exception("SetSliderScore <score> : score need to be between 1 and 10.");
@@ -78,53 +107,70 @@ public class OptionController {
     // Getter Method
     /////////////////////////////////////////////////////////////
 
-    public RadioButton GetIDark() {
-        return this._dark;
-    }
-
-    public RadioButton GetILight() {
-        return this._light;
-    }
-
-    public Label GetIScore() {
-        return this._score;
-    }
-
-    public ChoiceBox GetIPolices() {
-        return this._polices;
-    }
-
-    public Slider GetISlider() {
-        return this._slider;
-    }
-
-    public String Ok() {
-        this.theme = GetIDark().isSelected() ? "dark" : "light";
-        this.police = GetIPolices().getValue() != null ? GetIPolices().getValue().toString() : "";
-        this.score = (int) Math.round(Integer.parseInt(GetIScore().getText()));
-        return "Ok";
-    }
-
-    public String Cancel() {
-        return "";
-    }
-
+    /*
+    * Get the theme from the controller
+    */
     public String GetTheme() {
         return this.theme;
     }
 
+    /*
+    * Get the police from the controller
+    */
     public String GetPolice() {
         return this.police;
     }
 
+    /*
+    * Get the score from the controller
+    */
     public int GetScore() {
         return this.score;
+    }
+
+    /*
+    * Get the Dark Button from the view
+    */
+    public RadioButton GetIDark() {
+        return this._dark;
+    }
+
+    /*
+    * Get the Light Button from the view
+    */
+    public RadioButton GetILight() {
+        return this._light;
+    }
+
+    /*
+    * Get the Score Label from the view
+    */
+    public Label GetIScore() {
+        return this._score;
+    }
+
+    /*
+    * Get the ChoiceBox from the view
+    */
+    public ChoiceBox GetIPolices() {
+        return this._polices;
+    }
+
+    /*
+    * Get the Slider from the view
+    */
+    public Slider GetISlider() {
+        return this._slider;
     }
 
     /////////////////////////////////////////////////////////////
     // FXML Method
     /////////////////////////////////////////////////////////////
 
+    /*
+    * FXML Method actionned when slider is modified
+    * Update the score Label and update the slider (only integer)
+    */
     @FXML
     public void UpdateScoreSlider() {
         double score = GetISlider().getValue();
@@ -168,5 +214,26 @@ public class OptionController {
             GetIScore().setText("10");
             GetISlider().setValue(10);
         }
+    }
+
+    /////////////////////////////////////////////////////////////
+    // Miscellaneous Method
+    /////////////////////////////////////////////////////////////
+
+    /*
+    * Method called on previous controller to get positive result
+    */
+    public String Ok() {
+        SetTheme(GetIDark().isSelected() ? "dark" : "light");
+        SetPolice(GetIPolices().getValue() != null ? GetIPolices().getValue().toString() : "");
+        SetScore((int) Math.round(Integer.parseInt(GetIScore().getText())));
+        return "Ok";
+    }
+
+    /*
+    * Method called on previous controller to get negative result
+    */
+    public String Cancel() {
+        return "";
     }
 }

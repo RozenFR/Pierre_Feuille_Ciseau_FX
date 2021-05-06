@@ -1,8 +1,7 @@
 package controller;
 
-import com.sun.javafx.css.StyleManager;
-import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.css.Rule;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,13 +10,12 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
+import java.util.Map;
 import java.util.Optional;
 
 public class MenuController {
@@ -27,25 +25,27 @@ public class MenuController {
     /////////////////////////////////////////////////////////////
 
     // Default
-    private Stage stage;
-    private String theme;
-    private String police;
-    private int score;
+    private Stage stage; // Reference to window stage
+    private String theme; // theme of the view
+    private String police; // police of the view
+    private int score; // score => points to win
+    private Map<String, Image> imageMap; // Reference to all ext/img
 
     // FXML
-    @FXML private ImageView _background;
-    @FXML private ImageView _optionImg;
-    @FXML private ImageView _logo;
-    @FXML private ImageView _playImg;
-    @FXML private ImageView _ruleImg;
-    @FXML private ImageView _contactImg;
-    @FXML private ImageView _leaveImg;
+    @FXML private ImageView _background; // Reference to Background Image on view
+    @FXML private ImageView _optionImg; // Reference to Option Image on view
+    @FXML private ImageView _logo; // Reference to Logo Image on view
+    @FXML private ImageView _playImg; // Reference to Play Image on view
+    @FXML private ImageView _ruleImg; // Reference to Rule  Image on view
+    @FXML private ImageView _contactImg; // Reference to Contact Image on view
+    @FXML private ImageView _leaveImg; // Reference to Leave Imageon view
 
     /////////////////////////////////////////////////////////////
     // Constructor
     /////////////////////////////////////////////////////////////
 
-    public MenuController(Stage stage, String theme, String police, int score) {
+    public MenuController(Stage stage, Map<String, Image> imageMap, String theme, String police, int score) {
+        SetImageMap(imageMap);
         SetStage(stage);
         SetTheme(theme);
         SetPolice(police);
@@ -55,6 +55,7 @@ public class MenuController {
     /////////////////////////////////////////////////////////////
     // Initializer
     /////////////////////////////////////////////////////////////
+
     @FXML
     public void initialize() throws FileNotFoundException {
         SetImg();
@@ -64,22 +65,44 @@ public class MenuController {
     // Setter Method
     /////////////////////////////////////////////////////////////
 
+    /*
+    * Set the stage reference on the controller
+    */
     private void SetStage(Stage stage) {
         this.stage = stage;
     }
 
+    /*
+    * Set the theme on the controller
+    */
     private void SetTheme(String theme) {
         this.theme = theme;
     }
 
+    /*
+    * Set the police on the controller
+    */
     private void SetPolice(String police) {
         this.police = police;
     }
 
+    /*
+    * Set the score point on the controller
+    */
     private void SetScore(int score) {
         this.score = score;
     }
 
+    /*
+    * Set Map of Image on the controller
+    */
+    private void SetImageMap(Map<String, Image> imageMap) {
+        this.imageMap = imageMap;
+    }
+
+    /*
+    * Set the style on the view
+    */
     private void SetStyle() throws IOException {
 
         Stage stage = GetStage();
@@ -113,42 +136,31 @@ public class MenuController {
 
     }
 
+    /*
+    * Set the image on the view
+    */
     private void SetImg() throws FileNotFoundException {
 
         // Background
-        InputStream streamBG = getClass().getResourceAsStream("/ext/img/bg.jpg");
-        Image bg = new Image(streamBG);
-        this._background.setImage(bg);
+        this._background.setImage(GetImageMap().get("bg"));
 
         // option
-        InputStream streamOption = getClass().getResourceAsStream("/ext/img/gear.png");
-        Image option = new Image(streamOption);
-        this._optionImg.setImage(option);
+        this._optionImg.setImage(GetImageMap().get("gear"));
 
         // Logo
-        InputStream streamLogo = getClass().getResourceAsStream("/ext/img/Logo.png");
-        Image logo = new Image(streamLogo);
-        this._logo.setImage(logo);
+        this._logo.setImage(GetImageMap().get("Logo"));
 
         // Play
-        InputStream streamPlay = getClass().getResourceAsStream("/ext/img/play.png");
-        Image play = new Image(streamPlay);
-        this._playImg.setImage(play);
+        this._playImg.setImage(GetImageMap().get("play"));
 
         // Rules
-        InputStream streamRule = getClass().getResourceAsStream("/ext/img/rules.png");
-        Image rule = new Image(streamRule);
-        this._ruleImg.setImage(rule);
+        this._ruleImg.setImage(GetImageMap().get("rules"));
 
         // Contact
-        InputStream streamContact = getClass().getResourceAsStream("/ext/img/question mark.png");
-        Image contact = new Image(streamContact);
-        this._contactImg.setImage(contact);
+        this._contactImg.setImage(GetImageMap().get("question mark"));
 
         // Leave
-        InputStream streamLeave = getClass().getResourceAsStream("/ext/img/cross.png");
-        Image leave = new Image(streamLeave);
-        this._leaveImg.setImage(leave);
+        this._leaveImg.setImage(GetImageMap().get("cross"));
 
     }
 
@@ -156,50 +168,56 @@ public class MenuController {
     // Getter Method
     /////////////////////////////////////////////////////////////
 
+    /*
+    * Get the stage from the controller
+    */
     public Stage GetStage() {
         return this.stage;
     }
 
-    public ImageView GetBG() {
-        return this._background;
-    }
-
+    /*
+    * Get the theme from the controller
+    */
     public String GetTheme() {
         return theme;
     }
 
+    /*
+    * Get the police from the controller
+    */
     public String GetPolice() {
         return this.police;
     }
 
+    /*
+    * Get the score from the controller
+    */
     public int GetScore() {
         return this.score;
     }
 
-    /////////////////////////////////////////////////////////////
-    // Miscellaneous
-    /////////////////////////////////////////////////////////////
-
-    public boolean isDark() {
-        return GetTheme().equalsIgnoreCase("dark");
+    /*
+    * Get Map of Image from the controller
+    */
+    public Map<String, Image> GetImageMap() {
+        return this.imageMap;
     }
 
-    public boolean isLight() {
-        return GetTheme().equalsIgnoreCase("light");
-    }
-
-    public boolean isArial() {
-        return GetPolice().equalsIgnoreCase("arial");
-    }
-
-    public boolean isTNR() {
-        return GetPolice().equalsIgnoreCase("Times New Roman");
+    /*
+     * Get the BackGround Image from the view
+     */
+    public ImageView GetBG() {
+        return this._background;
     }
 
     /////////////////////////////////////////////////////////////
     // FXML Method
     /////////////////////////////////////////////////////////////
 
+    /*
+    * FXML Method actionned when Option Button is clicked
+    * Return a dialog box and setup the new configuration on the actual controller
+    */
     @FXML
     public void Option() throws IOException {
 
@@ -210,7 +228,7 @@ public class MenuController {
         OptionController option = new OptionController(GetTheme(), GetPolice(), GetScore());
         loader.setController(option);
         StackPane view = loader.load();
-        view.getStylesheets().addAll(GetBG().getScene().getStylesheets());
+        view.getStylesheets().addAll(GetStage().getScene().getRoot().getStylesheets());
 
         dialog.getDialogPane().setContent(view);
 
@@ -237,24 +255,136 @@ public class MenuController {
         }
     }
 
+    /*
+    * FXML Method actionned when Play Button is clicked
+    * Switch actual scene to Game Scene
+    */
     @FXML
-    public void Play() {
+    public void Play() throws IOException {
+        // Setup view
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Game.fxml"));
+        GameController gameController = new GameController(GetStage(), GetImageMap(), GetTheme(), GetPolice(), GetScore());
+        loader.setController(gameController);
+        Parent view = loader.load();
+        view.getStylesheets().addAll(GetStage().getScene().getRoot().getStylesheets());
 
+        GetStage().setScene(new Scene(view));
     }
 
+    /*
+    * FXML Method actionned when Rule Button is clicked
+    * Return a dialog box
+    */
     @FXML
-    public void Rules() {
+    public void Rules() throws IOException {
+        Dialog<String> dialog = new Dialog<>();
 
+        // Setup FXML
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/Rule.fxml"));
+        RuleController ruleController = new RuleController(GetImageMap());
+        loader.setController(ruleController);
+        StackPane view = loader.load();
+        view.getStylesheets().addAll(GetStage().getScene().getRoot().getStylesheets());
+
+        dialog.getDialogPane().setContent(view);
+
+        ButtonType btnApply = new ButtonType("Ok", ButtonBar.ButtonData.OK_DONE);
+        ButtonType btnCancel = new ButtonType("Retour", ButtonBar.ButtonData.CANCEL_CLOSE);
+        dialog.getDialogPane().getButtonTypes().addAll(btnApply, btnCancel);
+
+        dialog.setResultConverter(new Callback<ButtonType, String>() {
+            @Override
+            public String call(ButtonType b) {
+                if (b == btnApply)
+                    return ruleController.Ok();
+                return ruleController.Cancel();
+            }
+        });
+
+        Optional<String> result = dialog.showAndWait();
+
+        if (!result.get().isBlank())
+            System.out.println("Successfully left Rules Dialog");
+        else
+            System.out.println("Cancel Rules Dialog");
     }
 
+    /*
+    * FXML Method actionned when Contact Button is clicked
+    * Return a dialog box
+    */
     @FXML
-    public void Contact() {
+    public void Contact() throws IOException {
+        Dialog<String> dialog = new Dialog<>();
 
+        // Setup FXML
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/Contact.fxml"));
+        RuleController ruleController = new RuleController(GetImageMap());
+        loader.setController(ruleController);
+        StackPane view = loader.load();
+        view.getStylesheets().addAll(GetStage().getScene().getRoot().getStylesheets());
+
+        dialog.getDialogPane().setContent(view);
+
+        ButtonType btnApply = new ButtonType("Ok", ButtonBar.ButtonData.OK_DONE);
+        ButtonType btnCancel = new ButtonType("Retour", ButtonBar.ButtonData.CANCEL_CLOSE);
+        dialog.getDialogPane().getButtonTypes().addAll(btnApply, btnCancel);
+
+        dialog.setResultConverter(new Callback<ButtonType, String>() {
+            @Override
+            public String call(ButtonType b) {
+                if (b == btnApply)
+                    return ruleController.Ok();
+                return ruleController.Cancel();
+            }
+        });
+
+        Optional<String> result = dialog.showAndWait();
+
+        if (!result.get().isBlank())
+            System.out.println("Successfully left Rules Dialog");
+        else
+            System.out.println("Cancel Rules Dialog");
     }
 
+    /*
+    * FXML Method actionned when Leave Button is clicked
+    * Close Application
+    */
     @FXML
     public void Leave() {
         Platform.exit();
+    }
+
+    /////////////////////////////////////////////////////////////
+    // Miscellaneous
+    /////////////////////////////////////////////////////////////
+
+    /*
+    * return true if theme is actually dark
+    */
+    public boolean isDark() {
+        return GetTheme().equalsIgnoreCase("dark");
+    }
+
+    /*
+    * return true if theme is actually light
+    */
+    public boolean isLight() {
+        return GetTheme().equalsIgnoreCase("light");
+    }
+
+    /*
+    * return true if police is actually arial
+    */
+    public boolean isArial() {
+        return GetPolice().equalsIgnoreCase("arial");
+    }
+    /*
+    * return true if police is actually Times New Roman
+    */
+    public boolean isTNR() {
+        return GetPolice().equalsIgnoreCase("Times New Roman");
     }
 
 }

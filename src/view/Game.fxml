@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox alignment="TOP_CENTER" prefHeight="1000.0" prefWidth="1000.0">
+         <children>
+            <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="277.0" prefWidth="1000.0">
+               <children>
+                  <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0" prefWidth="332.0">
+                     <children>
+                        <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="168.0" prefWidth="150.0">
+                           <children>
+                              <ImageView fx:id="_logo" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
+                              <Label text="SHIFUMI">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+                  <VBox alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0" prefWidth="336.0">
+                     <children>
+                        <Label fx:id="_status" text="VICTOIRE du joueur" textAlignment="CENTER" wrapText="true">
+                           <font>
+                              <Font size="40.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0" prefWidth="332.0" spacing="10.0">
+                     <children>
+                        <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#Option" styleClass="little-btn" text="OPTION">
+                           <font>
+                              <Font size="27.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fx:id="_optionImg" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                           </graphic>
+                        </Button>
+                        <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#Contact" styleClass="little-btn" text="CONTACT">
+                           <font>
+                              <Font size="27.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fx:id="_contactImg" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                           </graphic>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox>
+               <children>
+                  <StackPane alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="500.0">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d3d3d3" height="50.0" stroke="BLACK" strokeType="INSIDE" width="400.0" />
+                        <Label text="Joueur">
+                           <font>
+                              <Font size="27.0" />
+                           </font>
+                           <StackPane.margin>
+                              <Insets left="20.0" />
+                           </StackPane.margin>
+                        </Label>
+                        <Label fx:id="_playerScore" text="0">
+                           <font>
+                              <Font size="27.0" />
+                           </font>
+                           <StackPane.margin>
+                              <Insets left="120.0" />
+                           </StackPane.margin>
+                        </Label>
+                        <ProgressBar fx:id="_playerProgress" prefWidth="200.0" progress="0.0">
+                           <StackPane.margin>
+                              <Insets left="150.0" />
+                           </StackPane.margin>
+                        </ProgressBar>
+                        <Label text="10">
+                           <font>
+                              <Font size="27.0" />
+                           </font>
+                           <StackPane.margin>
+                              <Insets left="360.0" />
+                           </StackPane.margin>
+                        </Label>
+                     </children>
+                  </StackPane>
+                  <StackPane alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="500.0">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d3d3d3" height="50.0" stroke="BLACK" strokeType="INSIDE" width="400.0" />
+                        <Label text="IA">
+                           <font>
+                              <Font size="27.0" />
+                           </font>
+                           <StackPane.margin>
+                              <Insets right="50.0" />
+                           </StackPane.margin>
+                        </Label>
+                        <Label fx:id="_iaScore" text="0">
+                           <font>
+                              <Font size="27.0" />
+                           </font>
+                           <StackPane.margin>
+                              <Insets right="120.0" />
+                           </StackPane.margin>
+                        </Label>
+                        <ProgressBar fx:id="_iaProgress" nodeOrientation="RIGHT_TO_LEFT" prefWidth="200.0" progress="0.0">
+                           <StackPane.margin>
+                              <Insets right="150.0" />
+                           </StackPane.margin>
+                        </ProgressBar>
+                        <Label text="10">
+                           <font>
+                              <Font size="27.0" />
+                           </font>
+                           <StackPane.margin>
+                              <Insets right="360.0" />
+                           </StackPane.margin>
+                        </Label>
+                     </children>
+                  </StackPane>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="300.0" prefWidth="1000.0">
+               <children>
+                  <StackPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="300.0" prefWidth="500.0">
+                     <children>
+                        <ImageView fx:id="_playerChoice" fitHeight="300.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </StackPane>
+                  <StackPane prefHeight="300.0" prefWidth="500.0">
+                     <children>
+                        <ImageView fx:id="_iaChoice" fitHeight="300.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </StackPane>
+               </children>
+            </HBox>
+            <Label text="FAITES VOTRE CHOIX" textAlignment="CENTER">
+               <font>
+                  <Font size="41.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="250.0" prefWidth="1000.0" spacing="20.0">
+               <children>
+                  <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="250.0" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <Button maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#Cisor" prefHeight="150.0" prefWidth="150.0" styleClass="little-btn">
+                           <graphic>
+                              <ImageView fx:id="_cisorBtnImg" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
+                           </graphic>
+                        </Button>
+                        <Label text="Ciseau">
+                           <font>
+                              <Font size="27.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="250.0" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <Button maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#Rock" prefHeight="150.0" prefWidth="150.0" styleClass="little-btn">
+                           <graphic>
+                              <ImageView fx:id="_rockBtnImg" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
+                           </graphic>
+                        </Button>
+                        <Label text="Ciseau">
+                           <font>
+                              <Font size="27.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="250.0" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <Button maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#Paper" prefHeight="150.0" prefWidth="150.0" styleClass="little-btn">
+                           <graphic>
+                              <ImageView fx:id="_paperBtnImg" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
+                           </graphic>
+                        </Button>
+                        <Label text="Ciseau">
+                           <font>
+                              <Font size="27.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <StackPane alignment="BOTTOM_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="100.0" prefWidth="500.0">
+                     <children>
+                        <Button mnemonicParsing="false" styleClass="little-btn" text="REGLEMENT">
+                           <font>
+                              <Font size="27.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fx:id="_ruleImg" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                           </graphic>
+                        </Button>
+                     </children>
+                  </StackPane>
+                  <StackPane alignment="BOTTOM_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="100.0" prefWidth="500.0">
+                     <children>
+                        <Button mnemonicParsing="false" styleClass="little-btn" text="QUITTER">
+                           <graphic>
+                              <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                           </graphic>
+                           <font>
+                              <Font size="27.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </StackPane>
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </VBox>
+      <ImageView fx:id="_background" fitHeight="1000.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true" styleClass="little-btn" />
+   </children>
+</AnchorPane>
