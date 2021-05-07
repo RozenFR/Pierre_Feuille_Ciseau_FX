@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fx:id="_background" fitHeight="1000.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true" />
@@ -31,7 +30,7 @@
                   </VBox>
                   <VBox alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="450.0" prefWidth="332.0" spacing="10.0">
                      <children>
-                        <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#Option" text="OPTION">
+                        <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#Option" styleClass="little-btn" text="OPTION">
                            <graphic>
                               <ImageView fx:id="_option" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
                            </graphic>
@@ -39,7 +38,7 @@
                               <Font size="27.0" />
                            </font>
                         </Button>
-                        <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#Contact" text="CONTACT">
+                        <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#Contact" styleClass="little-btn" text="CONTACT">
                            <graphic>
                               <ImageView fx:id="_contact" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
                            </graphic>
@@ -72,7 +71,7 @@
             </Label>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#Oui" text="Oui">
+                  <Button mnemonicParsing="false" onAction="#Oui" styleClass="little-btn" text="Oui">
                      <font>
                         <Font size="32.0" />
                      </font>
@@ -80,7 +79,7 @@
                         <ImageView fx:id="_oui" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#Non" text="Non">
+                  <Button mnemonicParsing="false" onAction="#Non" styleClass="little-btn" text="Non">
                      <font>
                         <Font size="32.0" />
                      </font>
@@ -94,7 +93,7 @@
                <children>
                   <StackPane alignment="BOTTOM_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="278.0" prefWidth="500.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#Rules" text="REGLEMENT">
+                        <Button mnemonicParsing="false" onAction="#Rules" styleClass="little-btn" text="REGLEMENT">
                            <font>
                               <Font size="27.0" />
                            </font>
@@ -106,7 +105,7 @@
                   </StackPane>
                   <StackPane alignment="BOTTOM_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="278.0" prefWidth="500.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#Leave" text="QUITTER">
+                        <Button mnemonicParsing="false" onAction="#Leave" styleClass="little-btn" text="QUITTER">
                            <graphic>
                               <ImageView fx:id="_leave" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
                            </graphic>

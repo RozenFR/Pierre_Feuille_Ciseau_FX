@@ -151,12 +151,14 @@ public class GameController {
 
         if (!theme.isBlank()) {
             if (isDark()) {
+                this._background.setImage(GetImageMap().get("bg-dark"));
                 if (isArial())
                     view.getStylesheets().add(getClass().getResource("/style/dark - Arial.scss").toExternalForm());
                 else if (isTNR())
                     view.getStylesheets().add(getClass().getResource("/style/dark - Times New Roman.scss").toExternalForm());
             }
             else if (isLight()) {
+                this._background.setImage(GetImageMap().get("bg"));
                 if (isArial())
                     view.getStylesheets().add(getClass().getResource("/style/light - Arial.scss").toExternalForm());
                 else if (isTNR())
@@ -496,10 +498,10 @@ public class GameController {
         }
 
         final KeyFrame kf0 = new KeyFrame(Duration.seconds(0), e -> DisableButton());
-        final KeyFrame kf1 = new KeyFrame(Duration.seconds(3), e -> ResetImg());
-        final KeyFrame kf2 = new KeyFrame(Duration.seconds(3), e -> ResetStatus());
-        final KeyFrame kf3 = new KeyFrame(Duration.seconds(3), e -> UpdateScore());
-        final KeyFrame kf4 = new KeyFrame(Duration.seconds(3), e -> {
+        final KeyFrame kf1 = new KeyFrame(Duration.seconds(2.5), e -> ResetImg());
+        final KeyFrame kf2 = new KeyFrame(Duration.seconds(2.5), e -> ResetStatus());
+        final KeyFrame kf3 = new KeyFrame(Duration.seconds(2.5), e -> UpdateScore());
+        final KeyFrame kf4 = new KeyFrame(Duration.seconds(2.5), e -> {
             try {
                 SwitchScene();
             } catch (IOException ioException) {

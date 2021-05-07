@@ -1,6 +1,16 @@
 .root * {
   -fx-font-family: "Times New Roman";
-  -fx-text-fill: black;
+  -fx-text-fill: white;
+}
+
+.default {
+  -fx-background-color: black;
+  -fx-border-color: cyan;
+}
+
+Rectangle {
+  -fx-background-color: black;
+  -fx-fill: black;
 }
 
 .title-btn {
@@ -28,7 +38,7 @@
 
 .little-btn:hover {
   -fx-font-size: 25px;
-  -fx-text-fill: darkgrey;
+  -fx-text-fill: lightgrey;
 }
 
 .little-btn:hover ImageView {

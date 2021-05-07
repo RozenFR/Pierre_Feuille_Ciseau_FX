@@ -20,7 +20,7 @@ public class App extends Application {
 
     final static String [] IMG_FOLDER = {"bg", "score", "chifoumi", "ciseaux", "cross", "gear", "Logo",
             "papier", "pierre", "play", "question mark", "rules", "btn_rock", "btn_cisor", "btn_paper",
-            "bg-dark"};
+            "bg-dark", "yes", "no"};
 
     /////////////////////////////////////////////////////////////
     // Variable

@@ -5,6 +5,12 @@
 
 .default {
   -fx-background-color: black;
+  -fx-border-color: cyan;
+}
+
+Rectangle {
+  -fx-background-color: black;
+  -fx-fill: black;
 }
 
 .title-btn {

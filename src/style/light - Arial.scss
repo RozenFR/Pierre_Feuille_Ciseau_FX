@@ -3,6 +3,11 @@
   -fx-text-fill: black;
 }
 
+.default {
+  -fx-background-color: white;
+  -fx-border-color: cyan;
+}
+
 .title-btn {
   -fx-background-color: transparent;
   -fx-background-repeat: no-repeat;
@@ -13,10 +18,6 @@
 .title-btn:hover {
   -fx-font-size: 42px;
   -fx-text-fill: blue;
-}
-
-.default {
-  -fx-background-color: white;
 }
 
 .title-btn:hover ImageView {
