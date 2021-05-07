@@ -1,7 +1,6 @@
 package controller;
 
 import javafx.application.Platform;
-import javafx.css.Rule;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -142,31 +141,16 @@ public class MenuController {
     * Set the image on the view
     */
     private void SetImg() {
-
-        // Background
         if (isDark())
             this._background.setImage(GetImageMap().get("bg-dark"));
         else if (isLight())
             this._background.setImage(GetImageMap().get("bg"));
-
-        // option
         this._optionImg.setImage(GetImageMap().get("gear"));
-
-        // Logo
         this._logo.setImage(GetImageMap().get("Logo"));
-
-        // Play
         this._playImg.setImage(GetImageMap().get("play"));
-
-        // Rules
         this._ruleImg.setImage(GetImageMap().get("rules"));
-
-        // Contact
         this._contactImg.setImage(GetImageMap().get("question mark"));
-
-        // Leave
         this._leaveImg.setImage(GetImageMap().get("cross"));
-
     }
 
     /////////////////////////////////////////////////////////////

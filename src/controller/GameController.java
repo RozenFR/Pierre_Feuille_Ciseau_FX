@@ -39,30 +39,30 @@ public class GameController {
     private GestionJeu game; // Reference to the Game
 
     // FXML
-    @FXML private ImageView _background;
-    @FXML private ImageView _logo;
-    @FXML private ImageView _optionImg;
-    @FXML private ImageView _contactImg;
-    @FXML private ImageView _playerChoice;
-    @FXML private ImageView _iaChoice;
-    @FXML private ImageView _ruleImg;
-    @FXML private ImageView _leaveImg;
-    @FXML private ImageView _cisorBtnImg;
-    @FXML private ImageView _rockBtnImg;
-    @FXML private ImageView _paperBtnImg;
+    @FXML private ImageView _background; // Reference to Background on the view
+    @FXML private ImageView _logo; // Reference to logo on the view
+    @FXML private ImageView _optionImg; // Reference to option Image on the view
+    @FXML private ImageView _contactImg; // Reference to contact Image on the view
+    @FXML private ImageView _playerChoice; // Reference to player's choice Image on the view
+    @FXML private ImageView _iaChoice; // Reference to ia's choice on the view
+    @FXML private ImageView _ruleImg; // Reference to rule Image on the view
+    @FXML private ImageView _leaveImg; // Reference to leave Image on the view
+    @FXML private ImageView _cisorBtnImg; // Reference to cisor Button Image on the view
+    @FXML private ImageView _rockBtnImg; // Reference to rock Button Image on the view
+    @FXML private ImageView _paperBtnImg; // Reference to paper Button Image on the view
 
-    @FXML private Label _status;
-    @FXML private Label _maxScore1;
-    @FXML private Label _maxScore2;
-    @FXML private Label _playerScore;
-    @FXML private Label _iaScore;
+    @FXML private Label _status; // Reference to status Label on the view
+    @FXML private Label _maxScore1; // Reference to max score left rectangle Label on the view
+    @FXML private Label _maxScore2; // Reference to max score right rectangle Label on the view
+    @FXML private Label _playerScore; // Reference to player's score Label on the view
+    @FXML private Label _iaScore; // Reference to ia's score Label on the view
 
-    @FXML private ProgressBar _playerProgress;
-    @FXML private ProgressBar _iaProgress;
+    @FXML private ProgressBar _playerProgress; // Reference to player's Progress Bar on the View
+    @FXML private ProgressBar _iaProgress; // Reference to ia's Progress Bar on the View
 
-    @FXML private Button _cisorBtn;
-    @FXML private Button _rockBtn;
-    @FXML private Button _paperBtn;
+    @FXML private Button _cisorBtn; // Reference to cisor Button on the view
+    @FXML private Button _rockBtn; // Reference to rock Button on the view
+    @FXML private Button _paperBtn; // Reference to paper Button on the view
 
     /////////////////////////////////////////////////////////////
     // Constructor
@@ -217,13 +217,16 @@ public class GameController {
     }
 
     /*
-    * Set the Label Score on the view
+    * Set the Label Max Score on the view
     */
     private void SetIMaxScore() {
         this._maxScore1.setText(String.valueOf(GetScore()));
         this._maxScore2.setText(String.valueOf(GetScore()));
     }
 
+    /*
+     * Set the Label Score for ia and player on the view
+     */
     private void SetIScore() {
         this._playerScore.setText(String.valueOf(GetGame().get_pointsJoueur()));
         this._iaScore.setText(String.valueOf(GetGame().get_pointsOrdi()));
@@ -472,7 +475,7 @@ public class GameController {
     }
 
     /*
-    * Apply and Calculate Point
+    * Apply on view and Calculate Point
     */
     public void GameCalculate() {
         int rs = GetGame().CalculerPoints();
@@ -508,7 +511,7 @@ public class GameController {
                 ioException.printStackTrace();
             }
         });
-        final KeyFrame kf5 = new KeyFrame(Duration.seconds(3), e -> EnableButton());
+        final KeyFrame kf5 = new KeyFrame(Duration.seconds(2.5), e -> EnableButton());
         final Timeline timeline = new Timeline(kf0, kf1, kf2, kf3, kf4, kf5);
         Platform.runLater(timeline::play);
     }
@@ -532,7 +535,7 @@ public class GameController {
     }
 
     /*
-    * Method that reset the image choice ia and player on the view
+    * Reset the image choice ia and player on the view
     */
     public void ResetImg() {
         this._playerChoice.imageProperty().set(null);
@@ -540,14 +543,14 @@ public class GameController {
     }
 
     /*
-    * Method that reset the status message on the view
+    * Reset the status message on the view
     */
     public void ResetStatus() {
         this._status.setText("");
     }
 
     /*
-    * Methad that Update the score on the view
+    * Update the score on the view
     */
     public void UpdateScore() {
         this._playerScore.setText(String.valueOf(GetGame().get_pointsJoueur()));

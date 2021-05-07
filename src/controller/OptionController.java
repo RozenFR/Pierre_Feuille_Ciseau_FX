@@ -12,18 +12,18 @@ public class OptionController {
     /////////////////////////////////////////////////////////////
 
     // Default
-    private Stage stage;
-    private String theme;
-    private String police;
-    private int score;
+    private Stage stage; // Reference to actual stage
+    private String theme; // Theme to display
+    private String police; // police to display
+    private int score; // Max Score Settings
 
     // FXML
-    @FXML private RadioButton _dark;
-    @FXML private RadioButton _light;
+    @FXML private RadioButton _dark; // Select theme dark if selected
+    @FXML private RadioButton _light; // Select theme light if selected
 
-    @FXML private Label _score;
-    @FXML private Slider _slider;
-    @FXML private ChoiceBox _polices;
+    @FXML private Label _score; // Score Label on the view
+    @FXML private Slider _slider; // Slider on the view
+    @FXML private ChoiceBox _polices; // ChoiceBox on the View
 
     /////////////////////////////////////////////////////////////
     // Constructor

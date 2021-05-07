@@ -15,7 +15,7 @@ import java.util.Map;
 public class App extends Application {
 
     /////////////////////////////////////////////////////////////
-    // Constructor
+    // Constant
     /////////////////////////////////////////////////////////////
 
     final static String [] IMG_FOLDER = {"bg", "score", "chifoumi", "ciseaux", "cross", "gear", "Logo",
@@ -26,11 +26,11 @@ public class App extends Application {
     // Variable
     /////////////////////////////////////////////////////////////
 
-    private Map<String, Image> imageMap;
+    private Map<String, Image> imageMap; // Map of all image in ext/img folder
 
-    private String theme;
-    private String police;
-    private int score;
+    private String theme; // Default Theme
+    private String police; // Default Police
+    private int score; // Default Score
 
     /////////////////////////////////////////////////////////////
     // Main
@@ -42,11 +42,15 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        // Set Image in Map
+        // Default Setter
         SetImageMap();
+        SetTheme();
+        SetPolice();
+        SetScore();
+
         // Setup FXML
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/Menu.fxml"));
-        loader.setController(new MenuController(stage, GetImageMap(), "light", "arial", 5));
+        loader.setController(new MenuController(stage, GetImageMap(), GetTheme(), GetPolice(), GetScore()));
         Parent view = loader.load();
         view.getStylesheets().clear();
         view.getStylesheets().add(getClass().getResource("/style/light - Arial.scss").toExternalForm());
@@ -62,16 +66,38 @@ public class App extends Application {
     /////////////////////////////////////////////////////////////
 
     /*
-    * Set All image in ext in a map
+    * Set All image in ext in a map on the controller
     */
     private void SetImageMap() {
         Map<String, Image> imageViewMap = new HashMap<>();
         for(String fileName : IMG_FOLDER) {
             InputStream stream = getClass().getResourceAsStream("/ext/img/" + fileName + ".png");
+            assert stream != null;
             Image img = new Image(stream);
             imageViewMap.put(fileName, img);
         }
         this.imageMap = imageViewMap;
+    }
+
+    /*
+    * Set the theme on the controller
+    */
+    private void SetTheme() {
+        this.theme = "light";
+    }
+
+    /*
+     * Set the Police on the controller
+     */
+    private void SetPolice() {
+        this.police = "arial";
+    }
+
+    /*
+     * Set the Score on the controller
+     */
+    private void SetScore() {
+        this.score = 5;
     }
 
     /////////////////////////////////////////////////////////////
@@ -83,6 +109,27 @@ public class App extends Application {
     */
     public Map<String, Image> GetImageMap() {
         return this.imageMap;
+    }
+
+    /*
+     * Get the theme from the controller
+     */
+    private String GetTheme() {
+        return this.theme;
+    }
+
+    /*
+     * Get the Police from the controller
+     */
+    private String GetPolice() {
+        return this.police;
+    }
+
+    /*
+     * Get the score from the controller
+     */
+    private int GetScore() {
+        return this.score;
     }
 
 }
