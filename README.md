@@ -1,5 +1,5 @@
 # Interface Graphique
-Ce projet a été créer par Romain LY.
+Ce projet a été créer par Rozen.
 
 # Version
 - Java 16
